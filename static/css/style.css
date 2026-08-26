@@ -1,0 +1,1174 @@
+/* =========================================================
+   GENEL AYARLAR
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #111827;
+    color: #f3f4f6;
+}
+
+
+/* =========================================================
+   GENEL
+   ========================================================= */
+
+header {
+    background: #0b1120;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+.card {
+    background: #1f2937;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #b91c1c;
+}
+
+input,
+select {
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    margin: 5px;
+}
+
+a {
+    color: #dc2626;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   LOGIN SAYFASI
+   ========================================================= */
+
+.login-page {
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            #3f1515,
+            transparent 35%
+        ),
+        #111827;
+}
+
+
+/* LOGIN KARTI */
+
+.login-card {
+    width: 100%;
+
+    max-width: 460px;
+
+    background: #1f2937;
+
+    padding: 45px;
+
+    border-radius: 20px;
+
+    border: 1px solid #374151;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.5);
+
+    position: relative;
+}
+
+
+/* ÜST KIRMIZI ÇİZGİ */
+
+.login-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 4px;
+
+    background: #dc2626;
+
+    border-radius: 20px 20px 0 0;
+}
+
+
+/* =========================================================
+   LOGIN LOGO
+   ========================================================= */
+
+.logo-area {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+.logo {
+    width: 70px;
+
+    height: 70px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #dc2626;
+
+    color: white;
+
+    border-radius: 18px;
+
+    font-size: 34px;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 10px 25px rgba(220, 38, 38, 0.35);
+}
+
+.logo-area h1 {
+    font-size: 25px;
+
+    color: #f9fafb;
+
+    margin-bottom: 10px;
+}
+
+.logo-area p {
+    color: #9ca3af;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   LOGIN FORM
+   ========================================================= */
+
+.input-group {
+    margin-bottom: 22px;
+}
+
+.input-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #d1d5db;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid #4b5563;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    color: #f9fafb;
+
+    background: #111827;
+
+    outline: none;
+
+    margin: 0;
+
+    transition: 0.2s;
+}
+
+
+/* INPUT SEÇİLDİĞİNDE */
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #dc2626;
+
+    box-shadow:
+        0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+
+/* PLACEHOLDER */
+
+.input-group input::placeholder {
+    color: #6b7280;
+}
+
+
+/* LOGIN BUTONU */
+
+.login-card button {
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #dc2626;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.login-card button:hover {
+    background: #b91c1c;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(220, 38, 38, 0.25);
+}
+
+
+/* =========================================================
+   HATA MESAJI
+   ========================================================= */
+
+.login-card > p {
+    background: #3f1d1d;
+
+    color: #fca5a5;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    text-align: center;
+
+    margin-bottom: 20px;
+
+    font-size: 14px;
+
+    border: 1px solid #7f1d1d;
+}
+
+
+/* =========================================================
+   LOGIN ALT YAZI
+   ========================================================= */
+
+.login-footer {
+    text-align: center;
+
+    margin-top: 28px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #374151;
+
+    color: #6b7280;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   LOGIN MOBİL
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    .login-card {
+        padding: 32px 22px;
+    }
+
+    .logo-area h1 {
+        font-size: 21px;
+    }
+}
+
+
+/* =========================================================
+   =========================================================
+   DASHBOARD
+   =========================================================
+   ========================================================= */
+
+.dashboard-page {
+    background: #0d1117;
+
+    color: #e5e7eb;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   ÜST BAR
+   ========================================================= */
+
+.app-header {
+    height: 76px;
+
+    background: #11161d;
+
+    border-bottom: 1px solid #252b34;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 32px;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 10;
+}
+
+
+.system-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.system-line {
+    width: 4px;
+
+    height: 34px;
+
+    background: #c62828;
+
+    display: block;
+}
+
+
+.system-title h1 {
+    margin: 0;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    color: #f3f4f6;
+}
+
+
+.system-title p {
+    margin: 4px 0 0;
+
+    font-size: 11px;
+
+    color: #7d8794;
+
+    letter-spacing: .3px;
+}
+
+
+/* =========================================================
+   KULLANICI
+   ========================================================= */
+
+.header-user {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.header-user-text {
+    text-align: right;
+}
+
+
+.header-user-text strong {
+    display: block;
+
+    color: #e5e7eb;
+
+    font-size: 13px;
+}
+
+
+.header-user-text span {
+    display: block;
+
+    color: #737d8b;
+
+    font-size: 11px;
+
+    margin-top: 3px;
+}
+
+
+.header-avatar {
+    width: 36px;
+
+    height: 36px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #272d36;
+
+    border: 1px solid #3a424d;
+
+    color: #e5e7eb;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    border-radius: 6px;
+}
+
+
+.header-user > a {
+    color: #858e9b;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    padding-left: 10px;
+
+    border-left: 1px solid #303640;
+}
+
+
+.header-user > a:hover {
+    color: #e05252;
+}
+
+
+/* =========================================================
+   SAYFA YAPISI
+   ========================================================= */
+
+.app-layout {
+    display: flex;
+
+    min-height: calc(100vh - 76px);
+}
+
+
+/* =========================================================
+   SOL MENÜ
+   ========================================================= */
+
+.app-sidebar {
+    width: 220px;
+
+    background: #0f141b;
+
+    border-right: 1px solid #252b34;
+
+    padding: 28px 16px;
+
+    flex-shrink: 0;
+}
+
+
+.menu-title {
+    color: #5f6977;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    letter-spacing: 1.2px;
+
+    padding: 0 12px;
+
+    margin-bottom: 10px;
+}
+
+
+.menu-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    height: 43px;
+
+    padding: 0 12px;
+
+    margin-bottom: 3px;
+
+    color: #858e9b;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    border-radius: 5px;
+
+    transition: all .18s ease;
+}
+
+
+.menu-item span {
+    width: 18px;
+
+    text-align: center;
+
+    font-size: 15px;
+
+    color: #697381;
+}
+
+
+.menu-item:hover {
+    background: #191f27;
+
+    color: #e5e7eb;
+
+    text-decoration: none;
+}
+
+
+.menu-item:hover span {
+    color: #c5cbd3;
+}
+
+
+.menu-item.active {
+    background: #32191b;
+
+    color: #f0b0b0;
+
+    border-left: 2px solid #c62828;
+
+    padding-left: 10px;
+}
+
+
+.menu-item.active span {
+    color: #dc4a4a;
+}
+
+
+.sidebar-bottom {
+    margin-top: 35px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid #252b34;
+}
+
+
+/* =========================================================
+   ANA İÇERİK
+   ========================================================= */
+
+.app-content {
+    flex: 1;
+
+    padding: 36px 40px 60px;
+
+    max-width: 1500px;
+
+    margin: 0 auto;
+
+    width: 100%;
+}
+
+
+/* =========================================================
+   HOŞ GELDİN
+   ========================================================= */
+
+.welcome {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+
+    margin-bottom: 30px;
+}
+
+
+.page-label {
+    color: #c62828;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+
+.welcome h2 {
+    margin: 8px 0 6px;
+
+    font-size: 25px;
+
+    font-weight: 500;
+
+    color: #f3f4f6;
+}
+
+
+.welcome p {
+    margin: 0;
+
+    color: #737d8b;
+
+    font-size: 13px;
+}
+
+
+.date-box {
+    color: #6f7986;
+
+    font-size: 12px;
+
+    border: 1px solid #292f38;
+
+    padding: 9px 13px;
+
+    border-radius: 5px;
+
+    background: #11161d;
+}
+
+
+/* =========================================================
+   ÖZET KUTULARI
+   ========================================================= */
+
+.overview-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 12px;
+
+    margin-bottom: 18px;
+}
+
+
+.overview-box {
+    background: #11161d;
+
+    border: 1px solid #272e38;
+
+    border-radius: 6px;
+
+    padding: 19px 20px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+.overview-box::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    top: 0;
+
+    bottom: 0;
+
+    width: 2px;
+
+    background: #353c46;
+}
+
+
+.overview-box:first-child::before {
+    background: #c62828;
+}
+
+
+.overview-heading {
+    color: #737d8b;
+
+    font-size: 10px;
+
+    letter-spacing: .8px;
+
+    font-weight: 600;
+
+    margin-bottom: 12px;
+}
+
+
+.overview-number {
+    color: #f1f3f5;
+
+    font-size: 27px;
+
+    font-weight: 500;
+
+    line-height: 1;
+}
+
+
+.overview-description {
+    color: #626c79;
+
+    font-size: 11px;
+
+    margin-top: 9px;
+}
+
+
+/* =========================================================
+   ORTA ALAN
+   ========================================================= */
+
+.content-grid {
+    display: grid;
+
+    grid-template-columns: 1.35fr 1fr;
+
+    gap: 18px;
+
+    margin-bottom: 18px;
+}
+
+
+.content-panel {
+    background: #11161d;
+
+    border: 1px solid #272e38;
+
+    border-radius: 6px;
+
+    padding: 23px;
+}
+
+
+.panel-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+
+.panel-label {
+    display: block;
+
+    color: #596371;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.3px;
+
+    margin-bottom: 6px;
+}
+
+
+.panel-header h3 {
+    margin: 0;
+
+    font-size: 16px;
+
+    font-weight: 500;
+
+    color: #e5e7eb;
+}
+
+
+/* =========================================================
+   EVRAK AKIŞI
+   ========================================================= */
+
+.workflow {
+    display: flex;
+
+    align-items: center;
+
+    padding: 12px 5px 8px;
+}
+
+
+.workflow-step {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 100px;
+}
+
+
+.workflow-number {
+    width: 30px;
+
+    height: 30px;
+
+    border: 1px solid #3a424d;
+
+    color: #89929e;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 5px;
+
+    font-size: 9px;
+}
+
+
+.workflow-step strong {
+    display: block;
+
+    color: #d8dce1;
+
+    font-size: 11px;
+
+    font-weight: 500;
+}
+
+
+.workflow-step span {
+    display: block;
+
+    color: #626c79;
+
+    font-size: 10px;
+
+    margin-top: 3px;
+}
+
+
+.workflow-line {
+    height: 1px;
+
+    background: #303640;
+
+    flex: 1;
+
+    margin: 0 9px;
+}
+
+
+.workflow-step:nth-of-type(1) .workflow-number {
+    border-color: #8f2929;
+
+    color: #dc5555;
+}
+
+
+/* =========================================================
+   SON İŞLEMLER
+   ========================================================= */
+
+.activity-list {
+    border-top: 1px solid #252c35;
+}
+
+
+.activity {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 14px 2px;
+
+    border-bottom: 1px solid #20262e;
+}
+
+
+.activity-time {
+    width: 42px;
+
+    color: #606a77;
+
+    font-size: 10px;
+}
+
+
+.activity strong {
+    display: block;
+
+    color: #d9dde2;
+
+    font-size: 12px;
+
+    font-weight: 500;
+}
+
+
+.activity div span {
+    display: block;
+
+    color: #626c79;
+
+    font-size: 10px;
+
+    margin-top: 4px;
+}
+
+
+/* =========================================================
+   FABRİKALAR
+   ========================================================= */
+
+.factory-panel {
+    margin-bottom: 0;
+}
+
+
+.factory-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 10px;
+}
+
+
+.factory {
+    background: #0d1218;
+
+    border: 1px solid #272e38;
+
+    border-radius: 5px;
+
+    padding: 16px;
+
+    transition: border-color .18s;
+}
+
+
+.factory:hover {
+    border-color: #444d59;
+}
+
+
+.factory-name {
+    color: #dfe3e7;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    margin-bottom: 10px;
+}
+
+
+.factory-status {
+    color: #7b8794;
+
+    font-size: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+}
+
+
+.status-dot {
+    width: 6px;
+
+    height: 6px;
+
+    background: #4caf50;
+
+    border-radius: 50%;
+
+    display: inline-block;
+}
+
+
+.factory-info {
+    color: #5e6875;
+
+    font-size: 10px;
+
+    margin-top: 12px;
+
+    padding-top: 10px;
+
+    border-top: 1px solid #232a33;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .overview-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .factory-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .app-content {
+        padding: 30px 25px;
+    }
+}
+
+
+/* =========================================================
+   TELEFON
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .app-header {
+        padding: 0 18px;
+    }
+
+    .system-title p {
+        display: none;
+    }
+
+    .header-user-text {
+        display: none;
+    }
+
+    .app-layout {
+        flex-direction: column;
+    }
+
+    .app-sidebar {
+        width: 100%;
+
+        padding: 12px;
+
+        border-right: none;
+
+        border-bottom: 1px solid #252b34;
+    }
+
+    .menu-title,
+    .sidebar-bottom {
+        display: none;
+    }
+
+    .menu-item {
+        white-space: nowrap;
+    }
+
+    .app-content {
+        padding: 25px 18px;
+    }
+
+    .welcome {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .overview-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .workflow {
+        overflow-x: auto;
+
+        min-width: 500px;
+    }
+
+    .content-panel {
+        overflow: hidden;
+    }
+
+    .factory-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}

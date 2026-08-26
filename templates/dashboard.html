@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dosya Yönetim Sistemi</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<header class="app-header">
+
+    <div class="system-title">
+
+        <span class="system-line"></span>
+
+        <div>
+            <h1>Dosya Yönetim Sistemi</h1>
+            <p>Kurumsal Evrak ve Doküman Takip</p>
+        </div>
+
+    </div>
+
+
+    <div class="header-user">
+
+        <div class="header-user-text">
+
+            <strong>
+                {{ session["kullanici_adi"] }}
+            </strong>
+
+            <span>
+                {{ session["rol"] }}
+            </span>
+
+        </div>
+
+
+        <div class="header-avatar">
+            {{ session["kullanici_adi"][0]|upper }}
+        </div>
+
+
+        <a href="{{ url_for('cikis') }}">
+            Çıkış
+        </a>
+
+    </div>
+
+</header>
+
+
+<div class="app-layout">
+
+
+    <aside class="app-sidebar">
+
+        <div class="menu-title">
+            MENÜ
+        </div>
+
+
+        <nav>
+
+            <a href="{{ url_for('dashboard') }}"
+               class="menu-item active">
+
+                <span>⌂</span>
+                Ana Sayfa
+
+            </a>
+
+
+            <a href="{{ url_for('dosyalar') }}"
+               class="menu-item">
+
+                <span>▣</span>
+                Dosyalar
+
+            </a>
+
+
+            <a href="{{ url_for('evraklar') }}"
+               class="menu-item">
+
+                <span>□</span>
+                Evraklar
+
+            </a>
+
+
+            <a href="{{ url_for('fabrikalar') }}"
+               class="menu-item">
+
+                <span>▤</span>
+                Fabrikalar
+
+            </a>
+
+
+            <a href="{{ url_for('arsiv') }}"
+               class="menu-item">
+
+                <span>≡</span>
+                Arşiv
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="menu-title">
+                SİSTEM
+            </div>
+
+
+            <a href="#"
+               class="menu-item">
+
+                <span>⚙</span>
+                Ayarlar
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <main class="app-content">
+
+
+        <section class="welcome">
+
+            <div>
+
+                <span class="page-label">
+                    ANA SAYFA
+                </span>
+
+
+                <h2>
+                    Günaydın, {{ session["kullanici_adi"] }}
+                </h2>
+
+
+                <p>
+                    Bugünkü evrak ve dosya hareketlerine genel bakış.
+                </p>
+
+            </div>
+
+
+            <div class="date-box">
+                20 Ağustos 2026
+            </div>
+
+        </section>
+
+
+        <section class="overview-grid">
+
+
+            <div class="overview-box">
+
+                <div class="overview-heading">
+                    BEKLEYEN İŞLER
+                </div>
+
+
+                <div class="overview-number">
+                    {{ bekleyen_isler }}
+                </div>
+
+
+                <div class="overview-description">
+                    İşlem bekleyen evrak
+                </div>
+
+            </div>
+
+
+            <div class="overview-box">
+
+                <div class="overview-heading">
+                    AKTİF EVRAKLAR
+                </div>
+
+
+                <div class="overview-number">
+                    {{ aktif_dosyalar }}
+                </div>
+
+
+                <div class="overview-description">
+                    Sistemde kayıtlı evrak
+                </div>
+
+            </div>
+
+
+            <div class="overview-box">
+
+                <div class="overview-heading">
+                    ARŞİV
+                </div>
+
+
+                <div class="overview-number">
+                    {{ arsivlenen_evraklar }}
+                </div>
+
+
+                <div class="overview-description">
+                    Arşivlenen evrak
+                </div>
+
+            </div>
+
+
+            <div class="overview-box">
+
+                <div class="overview-heading">
+                    FABRİKALAR
+                </div>
+
+
+                <div class="overview-number">
+                    {{ fabrika_sayisi }}
+                </div>
+
+
+                <div class="overview-description">
+                    Sisteme bağlı birim
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <section class="content-grid">
+
+
+            <div class="content-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="panel-label">
+                            İŞ AKIŞI
+                        </span>
+
+                        <h3>
+                            Evrak Durumu
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="workflow">
+
+
+                    <div class="workflow-step">
+
+                        <div class="workflow-number">
+                            01
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Talep
+                            </strong>
+
+                            <span>
+                                Evrak talebi oluşturuldu
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="workflow-line"></div>
+
+
+                    <div class="workflow-step">
+
+                        <div class="workflow-number">
+                            02
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                İnceleme
+                            </strong>
+
+                            <span>
+                                Evrak inceleniyor
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="workflow-line"></div>
+
+
+                    <div class="workflow-step">
+
+                        <div class="workflow-number">
+                            03
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Onay
+                            </strong>
+
+                            <span>
+                                Onay bekliyor
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="workflow-line"></div>
+
+
+                    <div class="workflow-step">
+
+                        <div class="workflow-number">
+                            04
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Arşiv
+                            </strong>
+
+                            <span>
+                                İşlem tamamlandı
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <div class="content-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="panel-label">
+                            SİSTEM
+                        </span>
+
+                        <h3>
+                            Sistem Durumu
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="activity-list">
+
+
+                    <div class="activity">
+
+                        <span class="activity-time">
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Sistem aktif
+                            </strong>
+
+                            <span>
+                                Dosya yönetim sistemi çalışıyor
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="activity">
+
+                        <span class="activity-time">
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Veritabanı aktif
+                            </strong>
+
+                            <span>
+                                Veriler güvenli şekilde kayıt ediliyor
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="activity">
+
+                        <span class="activity-time">
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Evrak sistemi aktif
+                            </strong>
+
+                            <span>
+                                Evrak işlemleri kullanılabilir
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <section class="content-panel factory-panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="panel-label">
+                        BİRİMLER
+                    </span>
+
+                    <h3>
+                        Fabrika Durumu
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="factory-grid">
+
+
+                <div class="factory">
+
+                    <div class="factory-name">
+                        Fabrika A
+                    </div>
+
+                    <div class="factory-status">
+
+                        <span class="status-dot"></span>
+
+                        Aktif
+
+                    </div>
+
+                    <div class="factory-info">
+                        Sisteme bağlı
+                    </div>
+
+                </div>
+
+
+                <div class="factory">
+
+                    <div class="factory-name">
+                        Fabrika B
+                    </div>
+
+                    <div class="factory-status">
+
+                        <span class="status-dot"></span>
+
+                        Aktif
+
+                    </div>
+
+                    <div class="factory-info">
+                        Sisteme bağlı
+                    </div>
+
+                </div>
+
+
+                <div class="factory">
+
+                    <div class="factory-name">
+                        Fabrika C
+                    </div>
+
+                    <div class="factory-status">
+
+                        <span class="status-dot"></span>
+
+                        Aktif
+
+                    </div>
+
+                    <div class="factory-info">
+                        Sisteme bağlı
+                    </div>
+
+                </div>
+
+
+                <div class="factory">
+
+                    <div class="factory-name">
+                        Fabrika D
+                    </div>
+
+                    <div class="factory-status">
+
+                        <span class="status-dot"></span>
+
+                        Aktif
+
+                    </div>
+
+                    <div class="factory-info">
+                        Sisteme bağlı
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Proje ve Doküman Yönetim Sistemi</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="login-page">
+
+        <div class="login-card">
+
+            <div class="logo-area">
+                <div class="logo">P</div>
+
+                <h1>Proje Yönetim Sistemi</h1>
+
+                <p>
+                    Fabrikalar ve Yazılım Ekibi
+                    <br>
+                    Ortak Doküman & Proje Platformu
+                </p>
+            </div>
+
+            {% if hata %}
+                <p>{{ hata }}</p>
+            {% endif %}
+
+            <form method="POST">
+
+                <div class="input-group">
+                    <label>Kullanıcı Adı</label>
+
+                    <input
+                        type="text"
+                        name="kullanici_adi"
+                        placeholder="Kullanıcı adınızı giriniz"
+                        required>
+                </div>
+
+                <div class="input-group">
+                    <label>Şifre</label>
+
+                    <input
+                        type="password"
+                        name="sifre"
+                        placeholder="Şifrenizi giriniz"
+                        required>
+                </div>
+
+                <div class="input-group">
+                    <label>Fabrika / Birim</label>
+
+                    <select name="fabrika">
+                        <option value="">Seçiniz</option>
+                        <option>Fabrika A</option>
+                        <option>Fabrika B</option>
+                        <option>Fabrika C</option>
+                        <option>Fabrika D</option>
+                        <option>Yazılım Ekibi</option>
+                    </select>
+                </div>
+
+                <button type="submit">
+                    Sisteme Giriş Yap
+                </button>
+
+            </form>
+
+            <div class="login-footer">
+                Proje, Evrak ve Doküman Yönetim Sistemi
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

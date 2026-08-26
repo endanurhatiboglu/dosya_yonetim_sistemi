@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Evraklar</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<header class="app-header">
+
+    <div class="system-title">
+
+        <span class="system-line"></span>
+
+        <div>
+            <h1>Dosya Yönetim Sistemi</h1>
+            <p>Kurumsal Evrak ve Doküman Takip</p>
+        </div>
+
+    </div>
+
+    <div class="header-user">
+
+        <div class="header-user-text">
+
+            <strong>
+                {{ session["kullanici_adi"] }}
+            </strong>
+
+            <span>
+                {{ session["rol"] }}
+            </span>
+
+        </div>
+
+        <div class="header-avatar">
+            {{ session["kullanici_adi"][0]|upper }}
+        </div>
+
+        <a href="{{ url_for('cikis') }}">
+            Çıkış
+        </a>
+
+    </div>
+
+</header>
+
+
+<div class="app-layout">
+
+
+    <aside class="app-sidebar">
+
+        <div class="menu-title">
+            MENÜ
+        </div>
+
+        <nav>
+
+            <a href="{{ url_for('dashboard') }}"
+               class="menu-item">
+
+                <span>⌂</span>
+                Ana Sayfa
+
+            </a>
+
+
+            <a href="{{ url_for('dosyalar') }}"
+               class="menu-item">
+
+                <span>▣</span>
+                Dosyalar
+
+            </a>
+
+
+            <a href="{{ url_for('evraklar') }}"
+               class="menu-item active">
+
+                <span>□</span>
+                Evraklar
+
+            </a>
+
+
+            <a href="{{ url_for('fabrikalar') }}"
+               class="menu-item">
+
+                <span>▤</span>
+                Fabrikalar
+
+            </a>
+
+
+            <a href="{{ url_for('arsiv') }}"
+               class="menu-item">
+
+                <span>≡</span>
+                Arşiv
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="menu-title">
+                SİSTEM
+            </div>
+
+            <a href="#"
+               class="menu-item">
+
+                <span>⚙</span>
+                Ayarlar
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <main class="app-content">
+
+
+        <section class="welcome">
+
+            <div>
+
+                <span class="page-label">
+                    EVRAK YÖNETİMİ
+                </span>
+
+                <h2>
+                    Evraklar
+                </h2>
+
+                <p>
+                    Evrakların durumunu ve işlem aşamalarını takip edin.
+                </p>
+
+            </div>
+
+            <div class="date-box">
+                {{ evrak_listesi|length }} Evrak
+            </div>
+
+        </section>
+
+
+        {% if mesaj %}
+
+        <div class="success-message">
+            ✓ {{ mesaj }}
+        </div>
+
+        {% endif %}
+
+
+        <section class="content-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="panel-label">
+                        YENİ EVRAK
+                    </span>
+
+                    <h3>
+                        Evrak Oluştur
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <form method="POST">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Evrak Adı
+                    </label>
+
+                    <input
+                        type="text"
+                        name="evrak_adi"
+                        placeholder="Evrak adını girin"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Fabrika
+                    </label>
+
+                    <select name="fabrika_id" required>
+
+                        <option value="">
+                            Fabrika seçin
+                        </option>
+
+                        {% for fabrika in fabrika_listesi %}
+
+                        <option value="{{ fabrika[0] }}">
+                            {{ fabrika[1] }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Açıklama
+                    </label>
+
+                    <textarea
+                        name="aciklama"
+                        placeholder="Evrak hakkında açıklama yazın"></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Durum
+                    </label>
+
+                    <select name="durum" required>
+
+                        <option value="Talep">
+                            Talep
+                        </option>
+
+                        <option value="İnceleme">
+                            İnceleme
+                        </option>
+
+                        <option value="Onay">
+                            Onay
+                        </option>
+
+                        <option value="Arşiv">
+                            Arşiv
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button type="submit">
+                    Evrak Kaydet
+                </button>
+
+
+            </form>
+
+        </section>
+
+
+        <section class="content-panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="panel-label">
+                        EVRAK LİSTESİ
+                    </span>
+
+                    <h3>
+                        Kayıtlı Evraklar
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="activity-list">
+
+
+                {% if evrak_listesi %}
+
+
+                    {% for evrak in evrak_listesi %}
+
+                    <div class="activity">
+
+
+                        <div class="activity-time">
+                            {{ evrak[0] }}
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                {{ evrak[1] }}
+                            </strong>
+
+
+                            <span>
+
+                                Fabrika:
+                                {{ evrak[2] or "Belirtilmemiş" }}
+
+                                &nbsp; | &nbsp;
+
+                                Durum:
+                                {{ evrak[4] }}
+
+                                &nbsp; | &nbsp;
+
+                                {{ evrak[3] or "Açıklama yok" }}
+
+                            </span>
+
+
+                            <br>
+
+
+                            <a href="{{ url_for('evrak_sil', evrak_id=evrak[0]) }}">
+                                Evrakı Sil
+                            </a>
+
+
+                        </div>
+
+
+                    </div>
+
+                    {% endfor %}
+
+
+                {% else %}
+
+
+                    <div class="activity">
+
+                        <div class="activity-time">
+                            —
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Henüz evrak bulunmuyor
+                            </strong>
+
+                            <span>
+                                Yukarıdaki formu kullanarak ilk evrakınızı oluşturabilirsiniz.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                {% endif %}
+
+
+            </div>
+
+        </section>
+
+
+        <section class="content-panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="panel-label">
+                        İŞ AKIŞI
+                    </span>
+
+                    <h3>
+                        Evrak Durumları
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="workflow">
+
+
+                <div class="workflow-step">
+
+                    <div class="workflow-number">
+                        01
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Talep
+                        </strong>
+
+                        <span>
+                            Evrak talebi oluşturuldu
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="workflow-line"></div>
+
+
+                <div class="workflow-step">
+
+                    <div class="workflow-number">
+                        02
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            İnceleme
+                        </strong>
+
+                        <span>
+                            Evrak inceleniyor
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="workflow-line"></div>
+
+
+                <div class="workflow-step">
+
+                    <div class="workflow-number">
+                        03
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Onay
+                        </strong>
+
+                        <span>
+                            Onay bekliyor
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="workflow-line"></div>
+
+
+                <div class="workflow-step">
+
+                    <div class="workflow-number">
+                        04
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Arşiv
+                        </strong>
+
+                        <span>
+                            İşlem tamamlandı
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

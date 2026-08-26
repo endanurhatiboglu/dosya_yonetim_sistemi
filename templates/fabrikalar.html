@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fabrikalar</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<header class="app-header">
+
+    <div class="system-title">
+
+        <span class="system-line"></span>
+
+        <div>
+            <h1>Dosya Yönetim Sistemi</h1>
+            <p>Kurumsal Evrak ve Doküman Takip</p>
+        </div>
+
+    </div>
+
+
+    <div class="header-user">
+
+        <div class="header-user-text">
+
+            <strong>
+                {{ session["kullanici_adi"] }}
+            </strong>
+
+            <span>
+                {{ session["rol"] }}
+            </span>
+
+        </div>
+
+
+        <div class="header-avatar">
+            {{ session["kullanici_adi"][0]|upper }}
+        </div>
+
+
+        <a href="{{ url_for('cikis') }}">
+            Çıkış
+        </a>
+
+    </div>
+
+</header>
+
+
+<div class="app-layout">
+
+
+    <aside class="app-sidebar">
+
+        <div class="menu-title">
+            MENÜ
+        </div>
+
+
+        <nav>
+
+            <a href="{{ url_for('dashboard') }}"
+               class="menu-item">
+
+                <span>⌂</span>
+                Ana Sayfa
+
+            </a>
+
+
+            <a href="{{ url_for('dosyalar') }}"
+               class="menu-item">
+
+                <span>▣</span>
+                Dosyalar
+
+            </a>
+
+
+            <a href="{{ url_for('evraklar') }}"
+               class="menu-item">
+
+                <span>□</span>
+                Evraklar
+
+            </a>
+
+
+            <a href="{{ url_for('fabrikalar') }}"
+               class="menu-item active">
+
+                <span>▤</span>
+                Fabrikalar
+
+            </a>
+
+
+            <a href="{{ url_for('arsiv') }}"
+               class="menu-item">
+
+                <span>≡</span>
+                Arşiv
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="menu-title">
+                SİSTEM
+            </div>
+
+
+            <a href="#"
+               class="menu-item">
+
+                <span>⚙</span>
+                Ayarlar
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <main class="app-content">
+
+
+        <section class="welcome">
+
+            <div>
+
+                <span class="page-label">
+                    FABRİKA YÖNETİMİ
+                </span>
+
+
+                <h2>
+                    Fabrikalar
+                </h2>
+
+
+                <p>
+                    Sisteme bağlı fabrikaları görüntüleyin.
+                </p>
+
+            </div>
+
+
+            <div class="date-box">
+                4 Fabrika
+            </div>
+
+        </section>
+
+
+        <section class="content-panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <span class="panel-label">
+                        BİRİMLER
+                    </span>
+
+                    <h3>
+                        Fabrika Listesi
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="factory-grid">
+
+
+                {% for fabrika in fabrika_listesi %}
+
+
+                    <div class="factory">
+
+                        <div class="factory-name">
+
+                            🏭 {{ fabrika[1] }}
+
+                        </div>
+
+
+                        <div class="factory-status">
+
+                            <span class="status-dot"></span>
+
+                            Aktif
+
+                        </div>
+
+
+                        <div class="factory-info">
+
+                            Fabrika ID:
+                            {{ fabrika[0] }}
+
+                        </div>
+
+                    </div>
+
+
+                {% endfor %}
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+</body>
+
+</html>
